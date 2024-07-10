@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Generator</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-black text-white flex justify-center">
+    <main class="password-generator p-8 w-full max-w-3xl">
+    <section class="password-generator__section bg-gray-800 p-6 rounded-lg">
+        <div class="password-generator__header mb-4 text-center">
+            <h2 class="password-generator__title text-xl font-bold">Generate New Password</h2>
+            <p class="password-generator__output mt-2 p-2 bg-gray-700 rounded-md">Generated Password Here</p>
+        </div>
+
+        <div class="password-generator__controls">
+            <h1 class="password-generator__label">Character Length</h1>
+
+            <input type="range" min="8" max="128" value="16" step="1" class="password-generator__range w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer">
+            <p class="password-generator__range-value text-center mt-2">16</p>
+
+            <div class="password-generator__options mb-4">
+                <p class="password-generator__option flex justify-between items-center mb-2">
+                    Numbers (put numbers in password)
+                    <input type="checkbox" class="password-generator__checkbox form-checkbox h-5 w-5 text-gray-600">
+                </p>
+                <p class="password-generator__option flex justify-between items-center mb-2">
+                    Symbols (put symbols in password)
+                    <input type="checkbox" class="password-generator__checkbox form-checkbox h-5 w-5 text-gray-600">
+                </p>
+                <p class="password-generator__option flex justify-between items-center mb-2">
+                    Lowercase (put lowercase in password)
+                    <input type="checkbox" class="password-generator__checkbox form-checkbox h-5 w-5 text-gray-600">
+                </p>
+                <p class="password-generator__option flex justify-between items-center mb-2">
+                    Uppercase (use uppercase letters in password)
+                    <input type="checkbox" class="password-generator__checkbox form-checkbox h-5 w-5 text-gray-600">
+                </p>
+                <p class="password-generator__option flex justify-between items-center mb-2">
+                    Exclude Similar Characters (exclude similar chars, like 'i' and 'l')
+                    <input type="checkbox" class="password-generator__checkbox form-checkbox h-5 w-5 text-gray-600">
+                </p>
+                <p class="password-generator__option flex justify-between items-center mb-2">
+                    Strict (password must include at least one character from each pool)
+                    <input type="checkbox" class="password-generator__checkbox form-checkbox h-5 w-5 text-gray-600">
+                </p>
+            </div>
+            <div class="password-generator__exclude mb-4">
+                <label for="exclude-characters" class="password-generator__exclude-label block text-sm font-medium">Enter characters to be excluded from password</label>
+                <input type="text" id="exclude-characters" placeholder="Character to exclude" class="password-generator__exclude-input mt-1 block w-full p-2 bg-gray-700 border border-gray-600 rounded-md">
+            </div>
+            <div class="password-generator__button-container mb-4 flex justify-center">
+                <button class="password-generator__button bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Generate Pass</button>
+            </div>
+            <div class="password-generator__history">
+                <h2 class="password-generator__history-title text-xl font-bold">History</h2>
+            </div>
+        </div>
+    </section>
+</main>
+</body>
+</html>
