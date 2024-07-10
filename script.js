@@ -1,3 +1,12 @@
+/**
+ * Project: Password Generator
+ * Author: Arif Jahan Linkon
+ * License: MIT
+ * Version: 1.0.0
+ * Description: This script generates a secure password based on user-selected criteria such as length, inclusion of numbers, symbols, lowercase and uppercase letters, and exclusion of similar or specific characters. It also maintains a history of generated passwords.
+ */
+
+
 document.addEventListener('DOMContentLoaded', () => {
     const passwordOutput = document.querySelector('.password-generator__output');
     const rangeInput = document.querySelector('.password-generator__range');
@@ -6,6 +15,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const excludeInput = document.getElementById('exclude-characters');
     const generateButton = document.querySelector('.password-generator__button');
     const historyContainer = document.querySelector('.password-generator__history');
+    const strengthBar = document.querySelector('.password-generator__strength-bar');
+    const strengthText = document.querySelector('.password-generator__strength-text');
 
     const updateRangeValue = () => {
         rangeValue.textContent = rangeInput.value;
@@ -26,6 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const password = createPassword(length, options);
         passwordOutput.textContent = password;
         addToHistory(password);
+        updateStrengthBar(password);
     };
 
     const createPassword = (length, options) => {
@@ -69,6 +81,29 @@ document.addEventListener('DOMContentLoaded', () => {
         const historyItem = document.createElement('p');
         historyItem.textContent = password;
         historyContainer.appendChild(historyItem);
+    };
+
+    const updateStrengthBar = (password) => {
+        let strength = 0;
+        if (/[a-z]/.test(password)) strength++;
+        if (/[A-Z]/.test(password)) strength++;
+        if (/\d/.test(password)) strength++;
+        if (/[!@#$%^&*()_+\[\]{}|;:,.<>?]/.test(password)) strength++;
+        if (password.length >= 12) strength++;
+
+        if (strength <= 2) {
+            strengthBar.style.width = '33%';
+            strengthBar.style.backgroundColor = 'red';
+            strengthText.textContent = 'Strength: Low';
+        } else if (strength === 3) {
+            strengthBar.style.width = '66%';
+            strengthBar.style.backgroundColor = 'yellow';
+            strengthText.textContent = 'Strength: Medium';
+        } else {
+            strengthBar.style.width = '100%';
+            strengthBar.style.backgroundColor = 'green';
+            strengthText.textContent = 'Strength: Strong';
+        }
     };
 
     rangeInput.addEventListener('input', updateRangeValue);

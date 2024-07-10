@@ -1,3 +1,19 @@
+<!-- 
+ * Project: Password Generator
+ * Author: Arif Jahan Linkon
+ * License: MIT
+ * Version: 1.0.0
+ * Description: This script generates a secure password based on user-selected criteria such as length, inclusion of numbers, symbols, lowercase and uppercase letters, and exclusion of similar or specific characters. It also maintains a history of generated passwords.
+ * 
+ * Features:
+ * - Adjustable password length (8-128 characters)
+ * - Options to include numbers, symbols, lowercase, and uppercase letters
+ * - Option to exclude similar characters (e.g., 'i' and 'l')
+ * - Strict mode to ensure at least one character from each selected pool
+ * - Input field to exclude specific characters
+ * - History of generated passwords
+  -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +30,11 @@
     <section class="password-generator__section bg-gray-800 p-6 rounded-lg">
         <div class="password-generator__header mb-4 text-center">
             <h2 class="password-generator__title text-xl font-bold">Generate New Password</h2>
-            <p class="password-generator__output mt-2 p-2 bg-gray-700 rounded-md">Generated Password Here</p>
+            <p class="placeholder-text password-generator__output mt-2 p-2 bg-gray-700 rounded-md">Generated Password Here</p>
+            <div class="password-generator__strength mt-2">
+                <div class="password-generator__strength-bar h-2 rounded-md"></div>
+                <p class="password-generator__strength-text mt-1 text-center"></p>
+            </div>
         </div>
 
         <div class="password-generator__controls">
