@@ -1,3 +1,26 @@
 .placeholder-text {
     color: #9CA3AF; /* This is a gray color similar to a placeholder */
 }
+
+.password-generator__history p {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border: 1px solid #4B5563; /* Adding a border with a gray color */
+    padding: 0.5rem; /* Adding some padding for better appearance */
+    border-radius: 0.25rem; /* Adding a slight border radius */
+    width: 600px;
+}
+
+.placeholder-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border: 1px solid #4B5563; /* Adding a border with a gray color */
+    padding: 0.5rem; /* Adding some padding for better appearance */
+    border-radius: 0.25rem; /* Adding a slight border radius */
+}
+
+.error-message {
+    color: red;
+}

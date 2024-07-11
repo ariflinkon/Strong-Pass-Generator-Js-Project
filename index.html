@@ -30,7 +30,14 @@
     <section class="password-generator__section bg-gray-800 p-6 rounded-lg">
         <div class="password-generator__header mb-4 text-center">
             <h2 class="password-generator__title text-xl font-bold">Generate New Password</h2>
-            <p class="placeholder-text password-generator__output mt-2 p-2 bg-gray-700 rounded-md">Generated Password Here</p>
+            <div class="relative">
+                <p class="placeholder-text password-generator__output mt-2 p-2 bg-gray-700 rounded-md">Generated Password Here</p>
+                <button id="copy-button" class="absolute right-2 top-2 text-gray-400 hover:text-gray-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M15 2a1 1 0 00-1-1H6a1 1 0 00-1 1v1H4a2 2 0 00-2 2v11a2 2 0 002 2h9a2 2 0 002-2v-1h1a1 1 0 001-1V3a1 1 0 00-1-1h-1V2zm-1 1v11H4V4h1v1a1 1 0 001 1h6a1 1 0 001-1V4h1zm-2 0H8v1h4V3z" />
+                    </svg>
+                </button>
+            </div>
             <div class="password-generator__strength mt-2">
                 <div class="password-generator__strength-bar h-2 rounded-md"></div>
                 <p class="password-generator__strength-text mt-1 text-center"></p>
@@ -79,6 +86,8 @@
             <div class="password-generator__history">
                 <h2 class="password-generator__history-title text-xl font-bold">History</h2>
             </div>
+
+           
         </div>
     </section>
 </main>

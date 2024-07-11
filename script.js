@@ -17,6 +17,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const historyContainer = document.querySelector('.password-generator__history');
     const strengthBar = document.querySelector('.password-generator__strength-bar');
     const strengthText = document.querySelector('.password-generator__strength-text');
+    const copyButton = document.getElementById('copy-button');
+    const copyMessage = document.getElementById('copy-message');
+
+    // Set the range input attributes for min and max values
+    rangeInput.min = 6;
+    rangeInput.max = 100;
 
     const updateRangeValue = () => {
         rangeValue.textContent = rangeInput.value;
@@ -33,7 +39,13 @@ document.addEventListener('DOMContentLoaded', () => {
             strict: checkboxes[5].checked,
             excludeChars: excludeInput.value
         };
-
+    if (!options.numbers && !options.symbols && !options.lowercase && !options.uppercase) {
+       passwordOutput.textContent = "Please Select At Least One Box Below";
+       passwordOutput.style.color = 'red'; // Set text color to red
+    return;
+     } else {
+    passwordOutput.style.color = '#00FF00'; // Set text color to bright green
+     }
         const password = createPassword(length, options);
         passwordOutput.textContent = password;
         addToHistory(password);
@@ -78,9 +90,26 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const addToHistory = (password) => {
-        const historyItem = document.createElement('p');
-        historyItem.textContent = password;
+        const historyItem = document.createElement('div');
+        historyItem.classList.add('flex', 'justify-between', 'items-center', 'mb-2');
+        historyItem.innerHTML = `
+            <p>${password}</p>
+            <button class="copy-history-button text-gray-400 hover:text-gray-200">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M15 2a1 1 0 00-1-1H6a1 1 0 00-1 1v1H4a2 2 0 00-2 2v11a2 2 0 002 2h9a2 2 0 002-2v-1h1a1 1 0 001-1V3a1 1 0 00-1-1h-1V2zm-1 1v11H4V4h1v1a1 1 0 001 1h6a1 1 0 001-1V4h1zm-2 0H8v1h4V3z" />
+                </svg>
+            </button>
+            <span class="copy-message text-green-500 hidden">Copied</span>
+        `;
         historyContainer.appendChild(historyItem);
+
+        const copyHistoryButton = historyItem.querySelector('.copy-history-button');
+        const copyMessage = historyItem.querySelector('.copy-message');
+
+        copyHistoryButton.addEventListener('click', () => {
+            copyToClipboard(password);
+            showCopyMessage(copyMessage);
+        });
     };
 
     const updateStrengthBar = (password) => {
@@ -106,8 +135,35 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    const copyToClipboard = (text) => {
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+    };
+
+    const showCopyMessage = (messageElement) => {
+        messageElement.classList.remove('hidden');
+        setTimeout(() => {
+            messageElement.classList.add('hidden');
+        }, 2000);
+    };
+
+    copyButton.addEventListener('click', () => {
+        copyToClipboard(passwordOutput.textContent);
+        showCopyMessage(copyMessage);
+    });
+
     rangeInput.addEventListener('input', updateRangeValue);
     generateButton.addEventListener('click', generatePassword);
 
     updateRangeValue();
+    
+    // Add event listener for clicking on the password output to copy the password
+    copyButton.addEventListener('click', () => {
+    copyToClipboard(passwordOutput.textContent);
+    showCopyMessage(copyMessage);
+});
 });
